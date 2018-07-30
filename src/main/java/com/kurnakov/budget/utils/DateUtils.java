@@ -11,7 +11,7 @@ public class DateUtils {
         return localDateTime.toEpochSecond(ZoneOffset.UTC);
     }
 
-    public static LocalDateTime getLocalDateTimeFromString(String date){
+    public static LocalDateTime getLocalDateTimeFromString(String date) {
         LocalDateTime localDateTime = LocalDateTime.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         return localDateTime;
     }

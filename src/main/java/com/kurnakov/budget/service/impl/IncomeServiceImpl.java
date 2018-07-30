@@ -23,7 +23,7 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public Optional<Income> findBudgetItem(long id) {
+    public Optional<Income> findBudgetItemById(long id) {
         return repository.findById(id);
     }
 

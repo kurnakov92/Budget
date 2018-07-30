@@ -8,7 +8,7 @@ public interface IncomeService {
 
     void create(long id, String name, long amount);
 
-    Optional<Income> findBudgetItem(long id);
+    Optional<Income> findBudgetItemById(long id);
 
     void update(Income income, String name, long amount);
 
