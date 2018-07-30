@@ -6,6 +6,7 @@ import com.kurnakov.budget.service.IncomeService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class IncomeServiceImpl implements IncomeService {
@@ -17,18 +18,20 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public void create(long id, String name, long amount, LocalDateTime dateTime) {
-        repository.save(new Income(id, name, amount, dateTime));
+    public void create(long id, String name, long amount) {
+        repository.save(new Income(id, name, amount, LocalDateTime.now()));
     }
 
     @Override
-    public void update(Income income, long id, String name, long amount, LocalDateTime dateTime) {
-        Income updatedIncome = income;
-        updatedIncome.setId(id);
-        updatedIncome.setName(name);
-        updatedIncome.setAmount(amount);
-        updatedIncome.setDateTime(dateTime);
-        repository.save(updatedIncome);
+    public Optional<Income> findBudgetItem(long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public void update(Income income, String name, long amount) {
+        income.setName(name);
+        income.setAmount(amount);
+        repository.save(income);
     }
 
     @Override
@@ -40,4 +43,6 @@ public class IncomeServiceImpl implements IncomeService {
     public void deleteAll() {
         repository.deleteAll();
     }
+
+
 }

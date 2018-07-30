@@ -6,6 +6,7 @@ import com.kurnakov.budget.service.ExpenceService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class ExpenceServiceImpl implements ExpenceService {
@@ -17,18 +18,20 @@ public class ExpenceServiceImpl implements ExpenceService {
     }
 
     @Override
-    public void create(long id, String name, long amount, LocalDateTime dateTime) {
-        repository.save(new Expence(id, name, amount, dateTime));
+    public void create(long id, String name, long amount) {
+        repository.save(new Expence(id, name, amount, LocalDateTime.now()));
     }
 
     @Override
-    public void update(Expence expence, long id, String name, long amount, LocalDateTime dateTime) {
-        Expence updatedExpence = expence;
-        updatedExpence.setId(id);
-        updatedExpence.setName(name);
-        updatedExpence.setAmount(amount);
-        updatedExpence.setDateTime(dateTime);
-        repository.save(updatedExpence);
+    public Optional<Expence> findBudgetItem(long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public void update(Expence expence, String name, long amount) {
+        expence.setName(name);
+        expence.setAmount(amount);
+        repository.save(expence);
     }
 
     @Override

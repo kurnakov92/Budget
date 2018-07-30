@@ -2,13 +2,15 @@ package com.kurnakov.budget.service;
 
 import com.kurnakov.budget.model.Expence;
 
-import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface ExpenceService {
 
-    void create(long id, String name, long amount, LocalDateTime dateTime);
+    void create(long id, String name, long amount);
 
-    void update(Expence expence, long id, String name, long amount, LocalDateTime dateTime);
+    Optional<Expence> findBudgetItem(long id);
+
+    void update(Expence expence, String name, long amount);
 
     void delete(Expence expence);
 

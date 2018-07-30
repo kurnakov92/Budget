@@ -1,9 +1,10 @@
 package com.kurnakov.budget.repository;
 
-import com.kurnakov.budget.model.Expence;
+import com.kurnakov.budget.model.BudgetItem;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExpenceRepository extends MongoRepository<Expence, Long> {
+public interface BudgetItemRepository extends MongoRepository<BudgetItem, Long> {
+
 }
