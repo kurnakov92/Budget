@@ -18,8 +18,10 @@ public class ExpenceServiceImpl implements ExpenceService {
     }
 
     @Override
-    public void create(long id, String name, long amount) {
-        repository.save(new Expence(id, name, amount, LocalDateTime.now()));
+    public void create(Expence expence) {
+        expence.setDateTime(LocalDateTime.now().toString());
+        repository.save(expence);
+
     }
 
     @Override

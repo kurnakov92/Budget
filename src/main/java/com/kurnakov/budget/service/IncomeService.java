@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface IncomeService {
 
-    void create(long id, String name, long amount);
+    void create(Income income);
 
     Optional<Income> findBudgetItemById(long id);
 

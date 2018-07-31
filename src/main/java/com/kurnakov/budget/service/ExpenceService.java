@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ExpenceService {
 
-    void create(long id, String name, long amount);
+    void create(Expence expence);
 
     Optional<Expence> findBudgetItem(long id);
 

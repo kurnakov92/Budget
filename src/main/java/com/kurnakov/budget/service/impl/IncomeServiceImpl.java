@@ -18,8 +18,9 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public void create(long id, String name, long amount) {
-        repository.save(new Income(id, name, amount, LocalDateTime.now()));
+    public void create(Income income) {
+        income.setDateTime(LocalDateTime.now().toString());
+        repository.save(income);
     }
 
     @Override

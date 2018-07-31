@@ -4,10 +4,7 @@ import com.kurnakov.budget.model.Expence;
 import com.kurnakov.budget.service.ExpenceService;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Optional;
@@ -27,10 +24,9 @@ public class ExpenceController implements BudgetItemController<Expence> {
     }
 
     @Override
-    @RequestMapping("create")
-    public String create(@RequestParam long id, @RequestParam String name,
-                         @RequestParam long amount) {
-        service.create(id, name, amount);
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String create(@RequestBody Expence expence) {
+        service.create(expence);
         return env.getProperty("ITEM_CREATED");
     }
 
@@ -42,14 +38,14 @@ public class ExpenceController implements BudgetItemController<Expence> {
 
     @Override
     @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public String update(@RequestParam Expence item, @RequestParam String name, @RequestParam long amount) {
+    public String update(@RequestBody Expence item, @RequestParam String name, @RequestParam long amount) {
         service.update(item, name, amount);
         return env.getProperty("ITEM_UPDATED");
     }
 
     @Override
     @RequestMapping(value = "delete", method = RequestMethod.DELETE)
-    public String delete(@RequestParam Expence item) {
+    public String delete(@RequestBody Expence item) {
         service.delete(item);
         return env.getProperty("ITEM_DELETED");
     }
